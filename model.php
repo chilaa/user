@@ -1,39 +1,74 @@
 <?php
-global $con;
-$con = mysqli_connect('localhost', 'root', 'Root123!', 'task_manager');
+
 require_once "lib/DBConnection.php";
 
-function getUsers()
-{
-    global $con;
-    $string = "select * from user";
-    $query = mysqli_query($con, $string);
-    $result = mysqli_fetch_all($query, 1);
-
-    return $result;
-}
-
-function getUser($username)
-{
-    global $con;
-    $string = "select * from user where user_name='$username'";
-    $query = mysqli_query($con, $string);
-    $result = mysqli_fetch_all($query, 1);
-
-    return $result;
-}
-
-function addUser()
-{
-
-}
 
 function modelGetAllUsers()
 {
     $query = "select * from user";
     return get($query);
 }
-function modelAddUser(){
+
+function modelAddUser($data)
+{
+
+    $query = "insert into user";
+    $cols = '';
+    $vals = '';
+
+    $size = sizeof($data);
+    $separator = ',';
+    $iteration = 0;
+    print_r($size);
+    foreach ($data as $key => $value) {
+        $iteration++;
+        if ($iteration == $size) {
+            $separator = '';
+        }
+        $cols .= "$key $separator";
+        $vals .= "'$value' $separator";
+    }
+//    print_r("\n".$cols ."  \n ".$vals);
+    $query .= " ($cols) values ($vals);";
+    print_r($query);
+    return insert($query);
 
 
+}
+
+function modelGetUser($id)
+{
+    $query = "select * from user where id = $id;";
+    return get($query);
+
+}
+
+function modelUpdateUser($data, $id)
+{
+    $query = "update user set ";
+//    print_r($data);
+
+
+    $size = sizeof($data);
+    $separator = ',';
+    $iteration = 0;
+//    $id=$data['id'];
+//    print_r($data);
+//    print_r($size);
+    foreach ($data as $key => $value) {
+        $iteration++;
+        if ($iteration == $size) {
+            $separator = '';
+        }
+        $query .= " $key = '$value' $separator ";
+
+    }
+    $query .= " where id = $id";
+    return update($query);
+}
+
+function modelDeleteUser($id)
+{
+    $query="delete from user where id = $id";
+    return delete($query);
 }

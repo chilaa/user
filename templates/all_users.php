@@ -14,6 +14,12 @@
             border-radius: 5px;
             padding: 10px;
         }
+        input{
+            width: 180px;
+            height: 25px;
+            padding: 5px;
+            border-radius: 5px;
+        }
     </style>
 </head>
 <body>
@@ -38,7 +44,7 @@
     <?php foreach ($data as $user): ?>
     <tr>
         <td><?php echo $user['id']?></td>
-        <td><a href="/user/<?php echo $user['id']?>">
+        <td><a href="/editUser/<?php echo $user['id']?>">
                 <?php echo $user['user_name'] ?></a></td>
         <td><?php echo $user['password']?></td>
         <td><?php echo $user['first_name'] ?></td>
@@ -46,7 +52,7 @@
         <td><?php echo $user['age'] ?> </td>
         <td><?php echo $user['gender'] ?> </td>
         <td><a href="/editUser/<?php echo $user['id'] ?> ">Edit</a> /
-            <a href="/deleteUser/<?php echo $user['id'] ?> "> Delete</a>
+            <a onclick="return confirm('Are you sure you want to submit this form?');" href="/deleteUser/<?php echo $user['id'] ?> "> Delete</a>
         </td>
     </tr>
 

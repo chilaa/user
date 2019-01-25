@@ -2,22 +2,33 @@
 
 function router($method, $url, $action)
 {
+//    echo 'route';
 
     if (strpos($url, '{') == !false) {
         if (isset($_SERVER['PATH_INFO'])) {
 
+
+            $actions = explode('/', $url);
+            $paths = explode('/', $_SERVER['PATH_INFO']);
+            $act = $actions[1];
+            $id = $paths[2];
+//        print_r($act);
+            $path = $paths[1];
+            if ($act == $path) {
+                $action = explode('@', $action);
+                $controller = $action[0];
+                $function = $action[1];
+                require_once "controller/$controller.php";
+                $function($id);
+            }
         }
-        $actions = explode('/', $url);
-        $paths = explode('/', $_SERVER['PATH_INFO']);
-        print_r($actions);
-        print_r($paths);
     } else {
         if (check($method, $url)) {
             $action = explode('@', $action);
             $controller = $action[0];
             $function = $action[1];
             require_once "controller/$controller.php";
-//            echo "routrer done $function  $controller";
+//            echo "router done $function  $controller";
             $function();
         }
     }
