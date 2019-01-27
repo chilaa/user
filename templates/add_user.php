@@ -19,6 +19,10 @@
     <label for="username">User name</label><br/>
     <input type="text" id="username" name="userName">
     <br/> <br/>
+    
+    <label for="avatar">Choose an image</label>
+    <input type="file" id="avatar" name="avatar">
+    <br><br>
 
     <label for="password">Password</label><br/>
     <input type="password" id="password" name="password">

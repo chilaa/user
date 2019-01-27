@@ -25,13 +25,35 @@ function getUserData()
     $age = $_POST['age'];
     $gender = $_POST['gender'];
 
+    $avatar = '';
+
+    $check = getimagesize($_FILES['avatar']['tmp_name']);
+
+    if ($check) {
+
+        $fileTmpPath = $_FILES['avatar']['tmp_name'];
+        $fileName = $_FILES['avatar']['name'];
+        $fileNameCmps = explode('.', $fileName);
+        $fileExtension = strtolower(end($fileNameCmps));
+        $newFileName = md5(time() . $fileName) . '.' . $fileExtension;
+        $uploadFileDir = __ROOT__ . '/uploads/uploads/';
+        $dest_path = $uploadFileDir . $newFileName;
+
+
+
+        if (move_uploaded_file($fileTmpPath, $dest_path))
+            $avatar = $newFileName;
+
+    }
+
     $response = [
         'user_name' => $userName,
         'password' => $password,
         'first_name' => $firstName,
         'last_name' => $lastName,
         'age' => $age,
-        'gender' => $gender
+        'gender' => $gender,
+        'image' => $avatar
     ];
     return $response;
 }
@@ -66,13 +88,12 @@ function updateUser($id)
     $status = $response ? 'success' : 'error';
     header("Location: /users/all?status=$status");
 
-
 }
 
 function deleteUser($id)
 {
-    $response=modelDeleteUser($id);
-    $status=$response? 'success': 'error';
+    $response = modelDeleteUser($id);
+    $status = $response ? 'success' : 'error';
     header("Location: /users/all?status=$status");
 
 }

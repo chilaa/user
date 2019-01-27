@@ -31,6 +31,7 @@
     <thead>
     <tr>
         <td>ID</td>
+        <td>Photo  </td>
         <td>User Name</td>
         <td>Password</td>
         <td>First Name</td>
@@ -44,6 +45,9 @@
     <?php foreach ($data as $user): ?>
     <tr>
         <td><?php echo $user['id']?></td>
+        <td width="60px" height="60px"><img src="/uploads/uploads/<?php if (isset($user['image']))
+            echo $user['image']; else echo "default-avatar.jpg"
+            ?> " alt="image" height="50px" width="50px"></td>
         <td><a href="/editUser/<?php echo $user['id']?>">
                 <?php echo $user['user_name'] ?></a></td>
         <td><?php echo $user['password']?></td>

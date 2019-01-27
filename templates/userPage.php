@@ -33,8 +33,12 @@
 
 <form action="/updateUser/<?php echo $data['id'] ?>" method="post" enctype="multipart/form-data" >
     <label  for="username" >User name</label><br/>
-    <input type="text" value="<?php echo $data['user_name'] ?>"  id="username" name="userName">
+    <input type="text" value="<?php echo $data['user_name']  ?>"  id="username" name="userName">
     <br/> <br/>
+
+    <img width="200px" height="200px" src="/uploads/uploads/<?php if (isset($data['image'])) echo $data['image']; else echo "default-avatar.jpg"?> " >
+    <label for="avatar">Choose</label>
+    <input type="file" id="avatar" name="avatar">
 
     <label  for="id">ID</label><br/>
     <input type="text" id="id"  value="<?php echo $data['id'] ?>" name="id">

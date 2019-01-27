@@ -6,7 +6,7 @@ function router($method, $url, $action)
 
     if (strpos($url, '{') == !false) {
         if (isset($_SERVER['PATH_INFO'])) {
-
+            //amowmebs sheicavs tu ara routeri {, tu sheicavs eqceva rogorc ids tu ara rogorc mxolod funqcias
 
             $actions = explode('/', $url);
             $paths = explode('/', $_SERVER['PATH_INFO']);

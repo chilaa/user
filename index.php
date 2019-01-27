@@ -1,5 +1,5 @@
 <?php
-
+define( '__ROOT__', __DIR__);
 require_once 'lib/router.php';
 
 router('GET', '/users/all', 'userController@getAllUsers');
