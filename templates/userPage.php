@@ -7,7 +7,7 @@
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"
             integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
     <!--    <script src="../public/js/main.js"></script>-->
-
+    <script src="../lib/delete.js"></script>
     <style>
         table, th, td {
             border: 1px solid black;
@@ -65,5 +65,7 @@
 
 <br/>
 <!--<a href="/deleteUser/--><?php //echo $data['id'] ?><!--">Add new user</a>-->
+<a href="#" onclick="deleteUser("<?php echo $data['id'] ?> ")">Delete User</a>
+
 </body>
 </html>

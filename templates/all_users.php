@@ -6,7 +6,7 @@
 
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"
             integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-    <script src="../public/js/main.js"></script>
+    <script src="../lib/delete.js"></script>
 
     <style>
         table, th, td {
@@ -52,7 +52,7 @@
         <td><?php echo $user['age'] ?> </td>
         <td><?php echo $user['gender'] ?> </td>
         <td><a href="/editUser/<?php echo $user['id'] ?> ">Edit</a> /
-            <a onclick="return confirm('Are you sure you want to submit this form?');" href="/deleteUser/<?php echo $user['id'] ?> "> Delete</a>
+            <a href="#" onclick="deleteUser( '<?php echo $user['id']; ?>')"> Delete</a>
         </td>
     </tr>
 
